@@ -250,4 +250,22 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  var player;
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('my-portfolio-video', {
+      events: {
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.ENDED) {
+      player.seekTo(0);
+      player.pauseVideo();
+    }
+  }
+
+
 })();
